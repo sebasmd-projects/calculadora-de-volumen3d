@@ -8,7 +8,6 @@ const nextConfig = {
   },
   basePath: '/demo/calculadora-volumen',
   assetPrefix: '/demo/calculadora-volumen',
-  output: 'standalone',
 }
 
 export default nextConfig
