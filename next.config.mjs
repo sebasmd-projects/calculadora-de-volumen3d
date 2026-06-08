@@ -6,6 +6,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  basePath: '/demo/calculadora-volumen',
+  assetPrefix: '/demo/calculadora-volumen',
+  output: 'standalone',
 }
 
 export default nextConfig
