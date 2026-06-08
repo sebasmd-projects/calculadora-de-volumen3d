@@ -2,13 +2,14 @@
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import type { Calculo, CalcPayload } from '@/types'
+import { apiUrl } from '@/lib/api'
 
 export function useCalcularVolumen() {
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: async (payload: CalcPayload) => {
-      const response = await fetch('/api/calcular', {
+      const response = await fetch(apiUrl('/api/calcular'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -22,7 +23,7 @@ export function useCalcularVolumen() {
       return response.json() as Promise<Calculo>
     },
     onSuccess: async (calculo) => {
-      await fetch('/api/historial', {
+      await fetch(apiUrl('/api/historial'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(calculo),
@@ -36,7 +37,7 @@ export function useHistorial() {
   return useQuery({
     queryKey: ['historial'],
     queryFn: async () => {
-      const response = await fetch('/api/historial')
+      const response = await fetch(apiUrl('/api/historial'))
       if (!response.ok) throw new Error('Error fetching historial')
       return response.json() as Promise<Calculo[]>
     },
@@ -49,7 +50,7 @@ export function useDeleteCalculo() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const response = await fetch('/api/historial', {
+      const response = await fetch(apiUrl('/api/historial'), {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id }),
