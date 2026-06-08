@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const PATH = process.env.BASE_PATH || '/demo/calculadora-volumen'
+
 const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
@@ -6,10 +8,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/demo/calculadora-volumen',
-  assetPrefix: '/demo/calculadora-volumen',
+  basePath: PATH,
+  assetPrefix: PATH,
   env: {
-    NEXT_PUBLIC_BASE_PATH: '/demo/calculadora-volumen',
+    NEXT_PUBLIC_BASE_PATH: PATH,
   },
 }
 
